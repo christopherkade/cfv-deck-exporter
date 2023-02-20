@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <div class="content-wrapper" style="display: none">
+      <div class="textbox-wrapper">
+        <textarea
+          id="deck-list-input"
+          cols="50"
+          rows="20"
+          autofocus
+          readonly
+          style="height: auto"
+        ></textarea>
+        <button class="copy-button">
+          <img class="copy-icon" src="copy.svg" alt="Copy decklist" />
+          <img
+            class="copied-icon"
+            src="copied.svg"
+            alt="Decklist copied"
+            style="display: none"
+          />
+        </button>
+      </div>
+      <p class="info-text">
+        Paste this decklist into your new Cardmarket
+        <a href="https://www.cardmarket.com/en/Vanguard/Wants">"Wants"</a> list.
+      </p>
+    </div>
+    <div class="wrong-page-wrapper">
+      <h1 class="wrong-page__title">
+        You don't appear to be on a
+        <a href="https://decklog-en.bushiroad">Decklog</a> page.
+      </h1>
+      <br />
+      <p class="wrong-page__subtext">
+        If this seems wrong, feel free to let me know via
+        <a href="https://twitter.com/christo_kade">Twitter</a>.
+      </p>
+    </div>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </body>
+</html>

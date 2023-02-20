@@ -1,0 +1,66 @@
+body {
+  font-family: sans-serif;
+  padding: 20px 8px;
+  background-color: #012169;
+  color: #fff;
+  height: fit-content;
+}
+
+html {
+  height: 0;
+}
+
+#deck-list-input {
+  height: auto;
+  color: #012169;
+  font-weight: 600;
+  background: #fff;
+  font: inherit;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #ced4da;
+  outline: 0;
+  padding: 16px;
+  border-radius: 0.2rem;
+  resize: vertical;
+}
+
+.info-text {
+  font-size: 0.7rem;
+}
+
+a {
+  color: #8ab4f8;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  background-color: transparent;
+  border: transparent;
+  outline: 0;
+  cursor: pointer;
+}
+
+.copy-icon,
+.copied-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.textbox-wrapper {
+  position: relative;
+}
+
+.wrong-page-wrapper {
+  width: 300px;
+}
+
+.wrong-page__title {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.wrong-page__subtext {
+  margin: 0;
+}
