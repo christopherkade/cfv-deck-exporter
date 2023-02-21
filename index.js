@@ -4,11 +4,22 @@ const copiedIcon = document.querySelector(".copied-icon");
 const copyIcon = document.querySelector(".copy-icon");
 const wrongPageWrapper = document.querySelector(".wrong-page-wrapper");
 const contentWrapper = document.querySelector(".content-wrapper");
+const aboutButton = document.querySelector(".about-button");
+const closeButton = document.querySelector(".close-button");
+const aboutTextWrapper = document.querySelector(".info-text-wrapper");
 
 copyButton.addEventListener("click", function copyToClipboard() {
   navigator.clipboard.writeText(input.value);
   copiedIcon.style.display = "inline-block";
   copyIcon.style.display = "none";
+});
+
+aboutButton.addEventListener("click", function openAboutSection() {
+  aboutTextWrapper.style.display = "inline-block";
+});
+
+closeButton.addEventListener("click", function closeAboutSection() {
+  aboutTextWrapper.style.display = "none";
 });
 
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -22,7 +33,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   const { type, data } = request;
 
   if (type === "deck-list-message") {
-    contentWrapper.style.display = "inline-block";
+    contentWrapper.style.display = "flex";
     wrongPageWrapper.style.display = "none";
     input.value = data;
   }

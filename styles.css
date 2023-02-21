@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  padding: 20px 8px;
+  padding: 8px;
   background-color: #012169;
   color: #fff;
   height: fit-content;
@@ -24,8 +24,15 @@ html {
   resize: vertical;
 }
 
+.content-wrapper {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .info-text {
-  font-size: 0.7rem;
+  font-size: 0.875rem;
 }
 
 a {
@@ -63,4 +70,40 @@ a {
 
 .wrong-page__subtext {
   margin: 0;
+}
+
+.info-text-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  height: 100%;
+  left: 0;
+  padding: 16px;
+  background-color: rgba(1, 33, 105, 0.9);
+}
+
+.about-button {
+  background-color: transparent;
+  text-decoration: underline;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.close-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  text-decoration: underline;
+  font-size: 1rem;
+  margin-bottom: 4px;
 }
