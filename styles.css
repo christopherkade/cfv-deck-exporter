@@ -7,7 +7,7 @@ body {
 }
 
 html {
-  height: 0;
+  height: fit-content;
 }
 
 a {
@@ -21,11 +21,12 @@ a {
   background: #fff;
   font: inherit;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #ced4da;
+  border: 1px solid #000;
   outline: 0;
   padding: 16px;
   border-radius: 0.2rem;
   resize: vertical;
+  border-radius: 0;
 }
 
 .content-wrapper {
@@ -51,8 +52,8 @@ a {
 
 .copy-icon,
 .copied-icon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 
 .copied-icon {
@@ -110,4 +111,118 @@ a {
   text-decoration: underline;
   font-size: 1rem;
   margin-bottom: 4px;
+}
+
+/* Copied icon */
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+.path.circle {
+  -webkit-animation: dash 0.5s ease-in-out;
+  animation: dash 0.5s ease-in-out;
+}
+.path.line {
+  stroke-dashoffset: 1000;
+  -webkit-animation: dash 0.5s 0.35s ease-in-out forwards;
+  animation: dash 0.5s 0.35s ease-in-out forwards;
+}
+.path.check {
+  stroke-dashoffset: -100;
+  -webkit-animation: dash-check 0.5s 0.35s ease-in-out forwards;
+  animation: dash-check 0.5s 0.35s ease-in-out forwards;
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@-webkit-keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100px;
+  }
+
+  100% {
+    stroke-dashoffset: 200px;
+  }
+}
+
+@-ms-keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100px;
+  }
+
+  100% {
+    stroke-dashoffset: 200px;
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100px;
+  }
+
+  100% {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@-webkit-keyframes checkmark-circle {
+  0% {
+    stroke-dashoffset: 480px;
+  }
+
+  100% {
+    stroke-dashoffset: 960px;
+  }
+}
+
+@-ms-keyframes checkmark-circle {
+  0% {
+    stroke-dashoffset: 240px;
+  }
+
+  100% {
+    stroke-dashoffset: 480px;
+  }
+}
+
+@keyframes checkmark-circle {
+  0% {
+    stroke-dashoffset: 480px;
+  }
+
+  100% {
+    stroke-dashoffset: 960px;
+  }
 }
