@@ -10,6 +10,10 @@ html {
   height: 0;
 }
 
+a {
+  color: #8ab4f8;
+}
+
 #deck-list-input {
   height: auto;
   color: #012169;
@@ -35,10 +39,6 @@ html {
   font-size: 0.875rem;
 }
 
-a {
-  color: #8ab4f8;
-}
-
 .copy-button {
   position: absolute;
   top: 8px;
@@ -53,6 +53,10 @@ a {
 .copied-icon {
   width: 20px;
   height: 20px;
+}
+
+.copied-icon {
+  display: none;
 }
 
 .textbox-wrapper {

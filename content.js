@@ -31,7 +31,7 @@
     return format;
   };
 
-  const getDeckListFromDom = (format = "D") => {
+  const getDeckListFromDom = () => {
     const deckFormat = document
       .querySelector(".deck-preview-top-info")
       .firstChild.innerHTML.split(":")[1]
