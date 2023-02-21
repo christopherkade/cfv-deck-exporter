@@ -27,6 +27,7 @@ a {
   border-radius: 0.2rem;
   resize: vertical;
   border-radius: 0;
+  max-height: 400px;
 }
 
 .content-wrapper {
