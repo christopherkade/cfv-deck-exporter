@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-  padding: 8px;
   background-color: #012169;
   color: #fff;
   height: fit-content;
@@ -96,6 +95,7 @@ a {
   border: 0;
   cursor: pointer;
   margin-top: 8px;
+  margin-right: auto;
 }
 
 .close-button {
@@ -112,6 +112,14 @@ a {
   text-decoration: underline;
   font-size: 1rem;
   margin-bottom: 4px;
+}
+
+.store-select {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  border-radius: 0;
+  border: 1px solid #000;
 }
 
 /* Copied icon */

@@ -1,5 +1,7 @@
 const deckListInput = document.querySelector("#deck-list-input");
 
+const storeSelect = document.querySelector(".store-select");
+
 const copyButton = document.querySelector(".copy-button");
 const aboutButton = document.querySelector(".about-button");
 const closeButton = document.querySelector(".close-button");
@@ -10,6 +12,8 @@ const copyIcon = document.querySelector(".copy-icon");
 const wrongPageWrapper = document.querySelector(".wrong-page-wrapper");
 const contentWrapper = document.querySelector(".content-wrapper");
 const aboutTextWrapper = document.querySelector(".info-text-wrapper");
+
+let tabId = null;
 
 copyButton.addEventListener("click", function copyToClipboard() {
   navigator.clipboard.writeText(deckListInput.value);
@@ -25,9 +29,17 @@ closeButton.addEventListener("click", function closeAboutSection() {
   aboutTextWrapper.style.display = "none";
 });
 
+storeSelect.addEventListener("input", function triggerStoreFormatChange(e) {
+  chrome.tabs.sendMessage(tabId, {
+    type: "store-change",
+    data: e.target.value,
+  });
+});
+
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  tabId = tabs[0].id;
   chrome.scripting.executeScript({
-    target: { tabId: tabs[0].id },
+    target: { tabId },
     files: ["content.js"],
   });
 });
