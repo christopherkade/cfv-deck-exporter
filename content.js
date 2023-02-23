@@ -3,13 +3,7 @@
   const TCGPLAYER = "TCGPlayer";
 
   const sendDeckListMessage = (deckList) => {
-    if (!deckList) {
-      chrome.runtime.sendMessage({
-        type: "wrong-page",
-        data: null,
-      });
-      return;
-    }
+    if (!deckList) return;
 
     chrome.runtime.sendMessage({
       type: "deck-list-message",
@@ -37,7 +31,7 @@
   const getDeckListFromDom = (store = CARDMARKET) => {
     const deckFormat = document
       .querySelector(".deck-preview-top-info")
-      .firstChild.innerHTML.split(":")[1]
+      ?.firstChild.innerHTML.split(":")[1]
       .trim();
     const cardData = document.querySelectorAll(".card-controller-inner");
     let deckList = "";
@@ -65,13 +59,16 @@
     sendDeckListMessage(deckList);
   };
 
-  getDeckListFromDom();
-
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  chrome.runtime.onMessage.addListener((message) => {
     const { type, data } = message;
 
     if (type === "store-change") {
       getDeckListFromDom(data);
     }
+  });
+
+  // On launch, get the user's saved store and generate the card list
+  chrome.storage.sync.get("store", function ({ store }) {
+    getDeckListFromDom(store);
   });
 }

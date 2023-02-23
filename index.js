@@ -13,6 +13,10 @@ const wrongPageWrapper = document.querySelector(".wrong-page-wrapper");
 const contentWrapper = document.querySelector(".content-wrapper");
 const aboutTextWrapper = document.querySelector(".info-text-wrapper");
 
+const CARDMARKET = "Cardmarket";
+const TCGPLAYER = "TCGPlayer";
+const ALLOWED_URL = "decklog-en.bushiroad.com/view/";
+
 let tabId = null;
 
 copyButton.addEventListener("click", function copyToClipboard() {
@@ -30,17 +34,11 @@ closeButton.addEventListener("click", function closeAboutSection() {
 });
 
 storeSelect.addEventListener("input", function triggerStoreFormatChange(e) {
+  chrome.storage.sync.set({ store: e.target.value });
+
   chrome.tabs.sendMessage(tabId, {
     type: "store-change",
     data: e.target.value,
-  });
-});
-
-chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  tabId = tabs[0].id;
-  chrome.scripting.executeScript({
-    target: { tabId },
-    files: ["content.js"],
   });
 });
 
@@ -53,3 +51,26 @@ chrome.runtime.onMessage.addListener(function (request) {
     deckListInput.value = data;
   }
 });
+
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  tabId = tabs[0].id;
+
+  if (!tabs[0].url?.includes(ALLOWED_URL)) {
+    contentWrapper.style.display = "none";
+    wrongPageWrapper.style.display = "inline-block";
+    return;
+  }
+
+  chrome.scripting.executeScript({
+    target: { tabId },
+    files: ["content.js"],
+  });
+});
+
+const setDefaultSettings = () => {
+  chrome.storage.sync.get("store", function (data) {
+    storeSelect.value = data.store ? data.store : CARDMARKET;
+  });
+};
+
+setDefaultSettings();
