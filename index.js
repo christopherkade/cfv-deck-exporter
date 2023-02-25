@@ -31,13 +31,12 @@ const resetCopyIcon = () => {
 const handleSetCheckboxDisplay = (store) => {
   if (store === TCGPLAYER) {
     showSetWrapper.style.display = "flex";
+    showSetWrapper.style["grid-column-end"] = "none";
     footer.style["grid-template-columns"] = "repeat(3, 1fr)";
-    storeSelect.style["grid-column-start"] = "initial";
   } else {
     setCheckbox.checked = false;
     showSetWrapper.style.display = "none";
     footer.style["grid-template-columns"] = "repeat(2, 1fr)";
-    storeSelect.style["grid-column-start"] = "none";
   }
 };
 
@@ -57,6 +56,8 @@ closeButton.addEventListener("click", function closeAboutSection() {
 
 setCheckbox.addEventListener("click", function hideOrShowSet(e) {
   const checked = e.target.checked;
+
+  resetCopyIcon();
 
   chrome.tabs.sendMessage(tabId, {
     type: "show-set",

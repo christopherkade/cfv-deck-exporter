@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "CFV Deck Exporter",
   "description": "Export Cardfight!! Vanguard decks from Decklog to the Cardmarket or TCGPlayer format",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "action": {
     "default_popup": "index.html",
     "default_icon": "icon.png"

@@ -125,6 +125,10 @@ a {
   justify-content: flex-end;
 }
 
+.show-set-wrapper > label {
+  width: max-content;
+}
+
 .store-select {
   border-radius: 0;
   border: 1px solid #000;
