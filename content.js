@@ -28,7 +28,7 @@
     return format;
   };
 
-  const getDeckListFromDom = (store = CARDMARKET) => {
+  const getDeckListFromDom = (store = CARDMARKET, showSet = false) => {
     const deckFormat = document
       .querySelector(".deck-preview-top-info")
       ?.firstChild.innerHTML.split(":")[1]
@@ -47,10 +47,14 @@
         name = name.concat(` [${parsedFormat} Format]`);
       } else if (store === TCGPLAYER) {
         name = name.replaceAll("'", '"');
+
+        if (showSet) {
+          name = name.concat(` [${cardFormat}]`);
+        }
       }
 
       if (index > 0) {
-        deckList = deckList.concat("\n", `${number} ${name}`);
+        deckList = deckList.concat("<br />", `${number} ${name}`);
       } else {
         deckList = deckList.concat(`${number} ${name}`);
       }
@@ -64,6 +68,8 @@
 
     if (type === "store-change") {
       getDeckListFromDom(data);
+    } else if (type === "show-set") {
+      getDeckListFromDom(data.store, data.checked);
     }
   });
 

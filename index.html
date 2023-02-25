@@ -2,7 +2,7 @@
   <body>
     <div class="content-wrapper" style="display: none">
       <div class="textbox-wrapper">
-        <textarea id="deck-list-input" cols="50" rows="20" readonly></textarea>
+        <div id="deck-list-input" role="textbox" contenteditable></div>
         <button class="copy-button">
           <img class="copy-icon" src="copy.svg" alt="Copy decklist" />
 
@@ -37,12 +37,19 @@
         </button>
       </div>
 
-      <button class="about-button">About</button>
+      <div class="footer">
+        <button class="about-button">About</button>
 
-      <select class="store-select">
-        <option value="Cardmarket">Cardmarket</option>
-        <option value="TCGPlayer">TCGPlayer</option>
-      </select>
+        <div class="show-set-wrapper">
+          <label for="set-checkbox">Set number</label>
+          <input type="checkbox" id="set-checkbox" />
+        </div>
+
+        <select class="store-select">
+          <option value="Cardmarket">Cardmarket</option>
+          <option value="TCGPlayer">TCGPlayer</option>
+        </select>
+      </div>
       <div class="info-text-wrapper">
         <button class="close-button">X</button>
         <p class="info-text">

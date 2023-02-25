@@ -19,14 +19,12 @@ a {
   font-weight: 600;
   background: #fff;
   font: inherit;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #000;
   outline: 0;
   padding: 16px;
-  border-radius: 0.2rem;
-  resize: vertical;
   border-radius: 0;
   max-height: 400px;
+  min-width: 300px;
 }
 
 .content-wrapper {
@@ -43,7 +41,7 @@ a {
 .copy-button {
   position: absolute;
   top: 8px;
-  right: 16px;
+  right: 8px;
   background-color: transparent;
   border: transparent;
   outline: 0;
@@ -88,16 +86,6 @@ a {
   background-color: rgba(1, 33, 105, 0.9);
 }
 
-.about-button {
-  background-color: transparent;
-  text-decoration: underline;
-  color: #fff;
-  border: 0;
-  cursor: pointer;
-  margin-top: 8px;
-  margin-right: auto;
-}
-
 .close-button {
   position: absolute;
   top: 4px;
@@ -114,12 +102,34 @@ a {
   margin-bottom: 4px;
 }
 
+.footer {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+}
+
+.about-button {
+  justify-self: flex-start;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+
+.show-set-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .store-select {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
   border-radius: 0;
   border: 1px solid #000;
+  width: 100px;
+  grid-column-start: none;
 }
 
 /* Copied icon */
