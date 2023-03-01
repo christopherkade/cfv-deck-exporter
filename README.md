@@ -1,5 +1,8 @@
 # CFV Deck Exporter
 
+![users](https://img.shields.io/chrome-web-store/users/dcclinglnjcbdggbamlneoclnaligkea)
+![version](https://img.shields.io/chrome-web-store/v/dcclinglnjcbdggbamlneoclnaligkea)
+
 Export Cardfight!! Vanguard decks from Decklog to the Cardmarket or TCGPlayer format.
 
 This extension allows you to quickly generate Want lists on Cardmarket or TCGPlayer in order to check prices or simply store a list of future purchases.
