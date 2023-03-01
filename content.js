@@ -40,16 +40,20 @@
       const cardTitle = data.firstChild.title;
       const cardFormat = cardTitle.split("/")[0];
       const parsedFormat = parseCardFormat(deckFormat, cardFormat);
-      let name = cardTitle.split(/:(.*)/s)[1].trim();
+      let name = `<span class="card-name">${cardTitle
+        .split(/:(.*)/s)[1]
+        .trim()}`;
       const number = data.lastChild.innerText;
 
       if (store === CARDMARKET) {
-        name = name.concat(` [${parsedFormat} Format]`);
+        name = `${name.concat(` [${parsedFormat} Format]`)}</span>`;
       } else if (store === TCGPLAYER) {
         name = name.replaceAll("'", '"');
 
         if (showSet) {
-          name = name.concat(` [${cardFormat}]`);
+          name = `${name.concat(` [${cardFormat}]`)}</span>`;
+        } else {
+          name = `${name}</span>`;
         }
       }
 

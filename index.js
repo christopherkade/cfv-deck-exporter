@@ -40,6 +40,26 @@ const handleSetCheckboxDisplay = (store) => {
   }
 };
 
+const setCardRemoveOnClick = (deckList) => {
+  const cardNames = document.querySelectorAll(".card-name");
+  const nodeArray = [...cardNames];
+  const deckSplitByLine = deckList.split("<br />");
+
+  nodeArray.forEach((cardName) => {
+    // On card click, find the card, remove it and update the DOM
+    cardName.addEventListener("click", () => {
+      const lineIndex = deckSplitByLine.findIndex((line) =>
+        line.includes(cardName.innerText)
+      );
+      deckSplitByLine.splice(lineIndex, 1);
+      const updatedDeckList = deckSplitByLine.join("<br />");
+      deckListInput.innerHTML = updatedDeckList;
+      // Make sure to reset the event listeners
+      setCardRemoveOnClick(updatedDeckList);
+    });
+  });
+};
+
 copyButton.addEventListener("click", function copyToClipboard() {
   navigator.clipboard.writeText(deckListInput.innerText);
   copiedIcon.style.display = "inline-block";
@@ -89,6 +109,8 @@ chrome.runtime.onMessage.addListener(function (request) {
     contentWrapper.style.display = "flex";
     wrongPageWrapper.style.display = "none";
     deckListInput.innerHTML = data;
+
+    setCardRemoveOnClick(data);
   }
 });
 

@@ -23,8 +23,9 @@ a {
   outline: 0;
   padding: 16px;
   border-radius: 0;
-  max-height: 400px;
-  min-width: 300px;
+  min-width: 350px;
+  min-height: 10px;
+  font-size: 0.85rem;
 }
 
 .content-wrapper {
@@ -134,6 +135,16 @@ a {
   border: 1px solid #000;
   width: 100px;
   grid-column-start: none;
+}
+
+.card-name {
+  cursor: pointer;
+}
+
+.card-name:hover {
+  background-color: #012169;
+  color: #fff;
+  text-decoration: line-through;
 }
 
 /* Copied icon */
