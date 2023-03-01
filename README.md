@@ -9,7 +9,11 @@ This extension allows you to quickly generate Want lists on Cardmarket or TCGPla
 
 The extension simply goes through Decklog's HTML and generates the corresponding list.
 
+[Chrome Web Store link](https://chrome.google.com/webstore/detail/cfv-deck-exporter/dcclinglnjcbdggbamlneoclnaligkea?hl=en-GB&authuser=2)
+
 ## Backlog
 
 - Handle the G format (G-Deck included)
-- Allow quality selection (EX by default)
+- Firefox extension
+- Item deletion / edition on click
+- Card image display on hover
