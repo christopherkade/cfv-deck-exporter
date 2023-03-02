@@ -28,7 +28,7 @@ const resetCopyIcon = () => {
   copyIcon.style.display = "inline-block";
 };
 
-// If the store is TCGPlayer, we display the set display checkbox
+// If the store is TCGPlayer, we display the "set" display checkbox
 const handleSetCheckboxDisplay = (store) => {
   if (store === TCGPLAYER) {
     showSetWrapper.style.display = "flex";
