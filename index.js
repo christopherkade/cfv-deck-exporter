@@ -21,6 +21,7 @@ const TCGPLAYER = "TCGPlayer";
 const ALLOWED_URL = "decklog-en.bushiroad.com/view/";
 
 let tabId = null;
+let currentStore = null;
 
 const resetCopyIcon = () => {
   copiedIcon.style.display = "none";
@@ -43,37 +44,32 @@ const handleSetCheckboxDisplay = (store) => {
 const setCardRemoveOnClick = (deckList) => {
   const cardNames = document.querySelectorAll(".card-name");
   const nodeArray = [...cardNames];
-  const deckSplitByLine = deckList.split("<br />");
 
-  nodeArray.forEach((cardName) => {
-    // On card click, find the card, remove it and update the DOM
+  nodeArray.forEach((cardName, index) => {
     cardName.addEventListener("click", () => {
-      const lineIndex = deckSplitByLine.findIndex((line) =>
-        line.includes(cardName.innerText)
-      );
-      deckSplitByLine.splice(lineIndex, 1);
-      const updatedDeckList = deckSplitByLine.join("<br />");
-      deckListInput.innerHTML = updatedDeckList;
-      // Make sure to reset the event listeners
-      setCardRemoveOnClick(updatedDeckList);
+      const cardName = cardNames[index].dataset.title;
+      if (currentStore === CARDMARKET) {
+        chrome.tabs.create({
+          url: `https://www.cardmarket.com/en/Vanguard/Products/Search?searchString=${cardName}`,
+        });
+      } else if (currentStore === TCGPLAYER) {
+        chrome.tabs.create({
+          url: `https://www.tcgplayer.com/search/cardfight-vanguard/product?productLineName=cardfight-vanguard&q=${cardName}&view=grid`,
+        });
+      }
     });
   });
 };
 
-copyButton.addEventListener("click", function copyToClipboard() {
-  navigator.clipboard.writeText(deckListInput.innerText);
-  copiedIcon.style.display = "inline-block";
-  copyIcon.style.display = "none";
-});
-
+// ABOUT SECTION
 aboutButton.addEventListener("click", function openAboutSection() {
   aboutTextWrapper.style.display = "inline-block";
 });
-
 closeButton.addEventListener("click", function closeAboutSection() {
   aboutTextWrapper.style.display = "none";
 });
 
+// SET CHECKBOX
 setCheckbox.addEventListener("click", function hideOrShowSet(e) {
   const checked = e.target.checked;
 
@@ -88,9 +84,11 @@ setCheckbox.addEventListener("click", function hideOrShowSet(e) {
   });
 });
 
+// STORE SELECTION
 storeSelect.addEventListener("input", function triggerStoreFormatChange(e) {
   const store = e.target.value;
 
+  currentStore = store;
   chrome.storage.sync.set({ store });
 
   handleSetCheckboxDisplay(store);
@@ -100,6 +98,22 @@ storeSelect.addEventListener("input", function triggerStoreFormatChange(e) {
     type: "store-change",
     data: e.target.value,
   });
+});
+
+// COPY BUTTON
+copyButton.addEventListener("click", function copyToClipboard() {
+  navigator.clipboard.writeText(deckListInput.innerText);
+  copiedIcon.style.display = "inline-block";
+  copyIcon.style.display = "none";
+});
+contentWrapper.addEventListener("mouseenter", function displayCopyButton() {
+  copyButton.style.opacity = 1;
+});
+copyButton.addEventListener("mouseenter", function displayCopyButton() {
+  copyButton.style.opacity = 1;
+});
+contentWrapper.addEventListener("mouseleave", function hideCopyButton() {
+  copyButton.style.opacity = 0;
 });
 
 chrome.runtime.onMessage.addListener(function (request) {
@@ -131,7 +145,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
 const setDefaultSettings = () => {
   chrome.storage.sync.get("store", function (data) {
-    storeSelect.value = data.store ? data.store : CARDMARKET;
+    const store = data.store ? data.store : CARDMARKET;
+    storeSelect.value = store;
+    currentStore = store;
     handleSetCheckboxDisplay(data.store);
   });
 };

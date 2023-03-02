@@ -36,32 +36,27 @@
     const cardData = document.querySelectorAll(".card-controller-inner");
     let deckList = "";
 
-    cardData.forEach((data, index) => {
+    cardData.forEach((data) => {
       const cardTitle = data.firstChild.title;
       const cardFormat = cardTitle.split("/")[0];
       const parsedFormat = parseCardFormat(deckFormat, cardFormat);
-      let name = `<span class="card-name">${cardTitle
-        .split(/:(.*)/s)[1]
-        .trim()}`;
+      let name = cardTitle.split(/:(.*)/s)[1].trim();
+      const cleanName = name;
       const number = data.lastChild.innerText;
 
       if (store === CARDMARKET) {
-        name = `${name.concat(` [${parsedFormat} Format]`)}</span>`;
+        name = `${name.concat(` [${parsedFormat} Format]`)}`;
       } else if (store === TCGPLAYER) {
         name = name.replaceAll("'", '"');
 
         if (showSet) {
-          name = `${name.concat(` [${cardFormat}]`)}</span>`;
-        } else {
-          name = `${name}</span>`;
+          name = name.concat(` [${cardFormat}]`);
         }
       }
 
-      if (index > 0) {
-        deckList = deckList.concat("<br />", `${number} ${name}`);
-      } else {
-        deckList = deckList.concat(`${number} ${name}`);
-      }
+      deckList = deckList.concat(
+        `<span class="card-name" data-title="${cleanName}">${number} ${name}</span>`
+      );
     });
 
     sendDeckListMessage(deckList);
